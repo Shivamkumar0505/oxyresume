@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 
 <html class="scroll-smooth" lang="en"><head>
-<meta name="google-site-verification" content="GijeN2SoK3h5UnIyo3npGIAXkwq69exuwAuxyOm84Jc" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>OxyResume - Build Your Professional Resume in Seconds</title>
-<meta name="application-name" content="OxyResume">
-<meta property="og:site_name" content="OxyResume">
-<meta name="apple-mobile-web-app-title" content="OxyResume">
-<link rel="icon" type="image/png" sizes="128x128" href="/web logo.png">
+<title>OxyResume - Build Your Professional Resume in Minutes</title>
+<link rel="icon" type="image/png" sizes="128x128" href="web logo.png">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -916,7 +912,7 @@
       <!-- Feedback Form -->
       <div class="bg-white p-8 rounded-3xl shadow-sm border border-surface-variant">
         <h3 class="font-headline-sm text-headline-md text-navy-deep mb-6">Leave a Review</h3>
-        <form id="feedback-form" onsubmit="event.preventDefault(); alert('Thank you for your feedback!'); this.reset(); resetStars();">
+        <form id="feedback-form" onsubmit="submitFeedbackToWhatsApp(event)">
           <!-- Star Rating -->
           <div class="mb-6">
             <label class="block font-label-md text-navy-deep mb-2">Rate your experience</label>
@@ -932,12 +928,12 @@
           
           <div class="mb-4">
             <label class="block font-label-md text-navy-deep mb-2">Name</label>
-            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-surface-variant focus:border-royal-action focus:ring-2 focus:ring-royal-action/20 outline-none transition-all" placeholder="Your name">
+            <input type="text" id="feedback-name" required class="w-full px-4 py-3 rounded-xl border border-surface-variant focus:border-royal-action focus:ring-2 focus:ring-royal-action/20 outline-none transition-all" placeholder="Your name">
           </div>
           
           <div class="mb-6">
             <label class="block font-label-md text-navy-deep mb-2">Feedback or Issues</label>
-            <textarea required rows="4" class="w-full px-4 py-3 rounded-xl border border-surface-variant focus:border-royal-action focus:ring-2 focus:ring-royal-action/20 outline-none transition-all" placeholder="Tell us what you think or report a problem..."></textarea>
+            <textarea id="feedback-text" required rows="4" class="w-full px-4 py-3 rounded-xl border border-surface-variant focus:border-royal-action focus:ring-2 focus:ring-royal-action/20 outline-none transition-all" placeholder="Tell us what you think or report a problem..."></textarea>
           </div>
           
           <button type="submit" class="w-full py-4 bg-royal-action text-white rounded-xl font-bold font-label-md shadow-lg shadow-royal-action/20 hover:brightness-110 transition-all">Submit Feedback</button>
@@ -1039,6 +1035,23 @@
     ratingVal.value = '';
     updateStars(0);
   }
+
+  function submitFeedbackToWhatsApp(event) {
+    event.preventDefault();
+    const rating = document.getElementById('rating-val').value;
+    const name = document.getElementById('feedback-name').value;
+    const feedback = document.getElementById('feedback-text').value;
+
+    const whatsappNumber = "919693964533";
+    const message = `*New Feedback from OxyResume*\n\n*Name:* ${name}\n*Rating:* ${rating} Stars\n*Feedback:* ${feedback}`;
+    const encodedMessage = encodeURIComponent(message);
+    
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+    
+    alert('Thank you for your feedback!');
+    document.getElementById('feedback-form').reset();
+    resetStars();
+  }
 </script>
 <!-- FAQ Section (Accordion) -->
 <section class="py-24 bg-background">
@@ -1111,7 +1124,7 @@
 </div>
 </div>
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-12 pt-8 border-t border-white/5 text-center">
-<p class="font-body-sm text-body-sm text-surface-variant/60">© 2024 OxyResume. All rights reserved.</p>
+<p class="font-body-sm text-body-sm text-surface-variant/60">© 2026 OxyResume. All rights reserved.</p>
 <p class="font-body-sm text-body-sm text-surface-variant/60 mt-2">Made with ❤️ in INDIA.</p>
 </div>
 </footer>
